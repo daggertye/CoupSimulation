@@ -2,11 +2,11 @@ package roles;
 
 import effects.Action;
 
-public class Quintessa extends Role{
+public class Contessa extends Character{
 
 	@Override
 	public String getType() {
-		return "Quintessa";
+		return "Contessa";
 	}
 	
 	@Override

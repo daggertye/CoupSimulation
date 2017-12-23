@@ -2,7 +2,7 @@ package roles;
 
 import effects.Action;
 
-public class Assassin extends Role{
+public class Assassin extends Character{
 
 	@Override
 	public String getType() {

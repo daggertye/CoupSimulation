@@ -3,7 +3,7 @@ package roles;
 import effects.Action;
 import java.util.HashMap;
 
-public abstract class Role {
+public abstract class Character {
 	
 	public abstract String getType();
 	

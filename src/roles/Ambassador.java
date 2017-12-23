@@ -2,7 +2,7 @@ package roles;
 
 import effects.Action;
 
-public class Ambassador extends Role{
+public class Ambassador extends Character{
 
 	@Override
 	public String getType() {
@@ -11,7 +11,7 @@ public class Ambassador extends Role{
 
 	@Override
 	public Action[] getAllowedMoves() {
-		return new Action[] {Action.AMBASSADOR, Action.BLOCKSTEAL};
+		return new Action[] {Action.EXCHANGE, Action.BLOCKSTEAL};
 	}
 
 }

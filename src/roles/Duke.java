@@ -2,7 +2,7 @@ package roles;
 
 import effects.Action;
 
-public class Duke extends Role{
+public class Duke extends Character{
 
 	@Override
 	public String getType() {
@@ -11,7 +11,7 @@ public class Duke extends Role{
 
 	@Override
 	public Action[] getAllowedMoves() {
-		return new Action[] {Action.DRAWTHREE, Action.BLOCKFOREIGNAID};
+		return new Action[] {Action.TAX, Action.BLOCKFOREIGNAID};
 	}
 	
 }
