@@ -1,11 +1,11 @@
-package player;
+package model;
 
 import java.util.HashMap;
-import effects.Action;
+import effects.CallableAction;
 import roles.Character;
 
 public class Player {
-	private HashMap<Action, Boolean> possiblerules;
+	private HashMap<CallableAction, Boolean> possiblerules;
 	private Character c1;
 	private Character c2;
 
@@ -19,9 +19,9 @@ public class Player {
 	public Player(Character card1, Character card2) {
 		card1.setDead(false);
 		card2.setDead(false);
-		possiblerules = new HashMap<Action, Boolean>();
-		Action[] rules = Action.getActions();
-		for (Action rule : rules) {
+		possiblerules = new HashMap<CallableAction, Boolean>();
+		CallableAction[] rules = CallableAction.getCallableActions();
+		for (CallableAction rule : rules) {
 			possiblerules.put(rule, false);
 		}
 		card1.addAllowedMoves(possiblerules);
@@ -70,7 +70,7 @@ public class Player {
 	}
 
 	/** Setters and getters **/
-	public HashMap<Action, Boolean> getRules() {
+	public HashMap<CallableAction, Boolean> getRules() {
 		return possiblerules;
 	}
 

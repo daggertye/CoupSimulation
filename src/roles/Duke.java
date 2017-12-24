@@ -1,6 +1,6 @@
 package roles;
 
-import effects.Action;
+import effects.CallableAction;
 
 public class Duke extends Character{
 
@@ -10,8 +10,8 @@ public class Duke extends Character{
 	}
 
 	@Override
-	public Action[] getAllowedMoves() {
-		return new Action[] {Action.TAX, Action.BLOCKFOREIGNAID};
+	public CallableAction[] getAllowedMoves() {
+		return new CallableAction[] {CallableAction.TAX, CallableAction.BLOCKFOREIGNAID};
 	}
 	
 }

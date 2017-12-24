@@ -1,6 +1,6 @@
 package roles;
 
-import effects.Action;
+import effects.CallableAction;
 
 public class Contessa extends Character{
 
@@ -10,7 +10,7 @@ public class Contessa extends Character{
 	}
 	
 	@Override
-	public Action[] getAllowedMoves() {
-		return new Action[] {Action.BLOCKASSASSIN};
+	public CallableAction[] getAllowedMoves() {
+		return new CallableAction[] {CallableAction.BLOCKASSASSIN};
 	}
 }

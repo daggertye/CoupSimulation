@@ -1,6 +1,6 @@
 package roles;
 
-import effects.Action;
+import effects.CallableAction;
 
 public class Ambassador extends Character{
 
@@ -10,8 +10,8 @@ public class Ambassador extends Character{
 	}
 
 	@Override
-	public Action[] getAllowedMoves() {
-		return new Action[] {Action.EXCHANGE, Action.BLOCKSTEAL};
+	public CallableAction[] getAllowedMoves() {
+		return new CallableAction[] {CallableAction.EXCHANGE, CallableAction.BLOCKSTEAL};
 	}
 
 }

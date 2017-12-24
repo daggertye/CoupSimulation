@@ -1,6 +1,6 @@
 package roles;
 
-import effects.Action;
+import effects.CallableAction;
 
 public class Captain extends Character{
 
@@ -10,8 +10,8 @@ public class Captain extends Character{
 	}
 
 	@Override
-	public Action[] getAllowedMoves() {
-		return new Action[] {Action.STEAL, Action.BLOCKSTEAL};
+	public CallableAction[] getAllowedMoves() {
+		return new CallableAction[] {CallableAction.STEAL, CallableAction.BLOCKSTEAL};
 	}
 
 }

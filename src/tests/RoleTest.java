@@ -4,8 +4,9 @@ import static org.junit.Assert.*;
 import org.junit.*;
 
 import java.util.*;
-import player.Player;
-import effects.Action;
+
+import effects.CallableAction;
+import model.Player;
 import roles.*;
 import roles.Character;
 
@@ -14,10 +15,10 @@ public class RoleTest {
 	@Test
 	public void RuleTest() {
 		Player p = new Player(new Ambassador(), new Assassin());
-		HashMap<Action, Boolean> rules = p.getRules();
-		Action[] actions = Action.getActions();
-		for(Action ac: actions) {
-			if(ac == Action.ASSASSINATE || ac == Action.EXCHANGE || ac == Action.BLOCKSTEAL)
+		HashMap<CallableAction, Boolean> rules = p.getRules();
+		CallableAction[] actions = CallableAction.getCallableActions();
+		for(CallableAction ac: actions) {
+			if(ac == CallableAction.ASSASSINATE || ac == CallableAction.EXCHANGE || ac == CallableAction.BLOCKSTEAL)
 				assert(rules.get(ac));
 			else
 				assertFalse(rules.get(ac));
@@ -37,10 +38,10 @@ public class RoleTest {
 	@Test
 	public void DualRuleTest() {
 		Player p = new Player(new Ambassador(), new Ambassador());
-		HashMap<Action, Boolean> rules = p.getRules();
-		Action[] actions = Action.getActions();
-		for(Action ac: actions) {
-			if(ac == Action.EXCHANGE || ac == Action.BLOCKSTEAL)
+		HashMap<CallableAction, Boolean> rules = p.getRules();
+		CallableAction[] actions = CallableAction.getCallableActions();
+		for(CallableAction ac: actions) {
+			if(ac == CallableAction.EXCHANGE || ac == CallableAction.BLOCKSTEAL)
 				assert(rules.get(ac));
 			else
 				assertFalse(rules.get(ac));
@@ -61,10 +62,10 @@ public class RoleTest {
 	public void DeleteRuleTest() {
 		Player p = new Player(new Ambassador(), new Assassin());
 		p.removeLife(new Ambassador());
-		HashMap<Action, Boolean> rules = p.getRules();
-		Action[] actions = Action.getActions();
-		for(Action ac: actions) {
-			if(ac == Action.ASSASSINATE)
+		HashMap<CallableAction, Boolean> rules = p.getRules();
+		CallableAction[] actions = CallableAction.getCallableActions();
+		for(CallableAction ac: actions) {
+			if(ac == CallableAction.ASSASSINATE)
 				assert(rules.get(ac));
 			else
 				assertFalse(rules.get(ac));

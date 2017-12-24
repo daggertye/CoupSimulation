@@ -1,6 +1,6 @@
 package roles;
 
-import effects.Action;
+import effects.CallableAction;
 import java.util.HashMap;
 
 public abstract class Character {
@@ -9,18 +9,18 @@ public abstract class Character {
 	
 	public abstract String getType();
 	
-	public abstract Action[] getAllowedMoves();
+	public abstract CallableAction[] getAllowedMoves();
 	
-	public void addAllowedMoves(HashMap<Action, Boolean> hm) {
-		Action[] moves = getAllowedMoves();
-		for(Action move: moves) {
+	public void addAllowedMoves(HashMap<CallableAction, Boolean> hm) {
+		CallableAction[] moves = getAllowedMoves();
+		for(CallableAction move: moves) {
 			hm.put(move, true);
 		}
 	}
 	
-	public void removeAllowedMoves(HashMap<Action, Boolean> hm) {
-		Action[] moves = getAllowedMoves();
-		for(Action move: moves) {
+	public void removeAllowedMoves(HashMap<CallableAction, Boolean> hm) {
+		CallableAction[] moves = getAllowedMoves();
+		for(CallableAction move: moves) {
 			if(hm.get(move) == false)
 				throw new IllegalArgumentException();
 			hm.put(move, false);

@@ -1,6 +1,6 @@
 package roles;
 
-import effects.Action;
+import effects.CallableAction;
 
 public class Assassin extends Character{
 
@@ -10,8 +10,8 @@ public class Assassin extends Character{
 	}
 
 	@Override
-	public Action[] getAllowedMoves() {
-		return new Action[] {Action.ASSASSINATE};
+	public CallableAction[] getAllowedMoves() {
+		return new CallableAction[] {CallableAction.ASSASSINATE};
 	}
 
 }
