@@ -59,13 +59,13 @@ public class RoleTest {
 	}
 	
 	@Test
-	public void DeleteRuleTest() {
+	public void DeleteOneTest() {
 		Player p = new Player(new Ambassador(), new Assassin());
-		p.removeLife(new Ambassador());
+		p.removeLife(2);
 		HashMap<CallableAction, Boolean> rules = p.getRules();
 		CallableAction[] actions = CallableAction.getCallableActions();
 		for(CallableAction ac: actions) {
-			if(ac == CallableAction.ASSASSINATE)
+			if(ac == CallableAction.EXCHANGE || ac == CallableAction.BLOCKSTEAL)
 				assert(rules.get(ac));
 			else
 				assertFalse(rules.get(ac));
@@ -73,24 +73,47 @@ public class RoleTest {
 	}
 	
 	@Test
-	public void DeleteCharacterTest() {
-		Player p = new Player(new Ambassador(), new Assassin());
-		p.removeLife(new Ambassador());
-		Character c1 = p.getFirstCharacter();
-		Character c2 = p.getSecondCharacter();
-		assert(c1.getType().equals("Ambassador") && c2.getType().equals("Assassin"));
-		assert(c1.isDead());
-		assertFalse(c2.isDead());
+	public void DeleteOneDualCharTest() {
+		Player p = new Player(new Ambassador(), new Ambassador());
+		p.removeLife(2);
+		HashMap<CallableAction, Boolean> rules = p.getRules();
+		CallableAction[] actions = CallableAction.getCallableActions();
+		for(CallableAction ac: actions) {
+			if(ac == CallableAction.EXCHANGE || ac == CallableAction.BLOCKSTEAL)
+				assert(rules.get(ac));
+			else
+				assertFalse(rules.get(ac));
+		}
 	}
 	
 	@Test
-	public void DualDeleteRuleTest() {
+	public void LoseBothLivesNormCharTest() {
+		Player p = new Player(new Assassin(), new Ambassador());
+		p.removeLife(2);
+		p.removeLife(1);
+		HashMap<CallableAction, Boolean> rules = p.getRules();
+		CallableAction[] actions = CallableAction.getCallableActions();
+		for(CallableAction ac: actions) {
+				assertFalse(rules.get(ac));
+		}
+	}
+	
+	@Test
+	public void LoseBothLivesDualCharTest() {
 		Player p = new Player(new Ambassador(), new Ambassador());
-		p.removeLife(new Ambassador());
-		Character c1 = p.getFirstCharacter();
-		Character c2 = p.getSecondCharacter();
-		assert(c1.getType().equals("Ambassador") && c2.getType().equals("Ambassador"));
-		assert(c1.isDead());
-		assertFalse(c2.isDead());
+		p.removeLife(2);
+		p.removeLife(1);
+		HashMap<CallableAction, Boolean> rules = p.getRules();
+		CallableAction[] actions = CallableAction.getCallableActions();
+		for(CallableAction ac: actions) {
+				assertFalse(rules.get(ac));
+		}
+	}
+	
+	@Test (expected = IndexOutOfBoundsException.class)
+	public void LoseLifeTwice() {
+		Player p = new Player(new Ambassador(), new Assassin());
+		p.removeLife(1);
+		p.removeLife(1);
 	}
 }

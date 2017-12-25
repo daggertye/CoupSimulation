@@ -34,38 +34,21 @@ public class Player {
 	}
 
 	/**
-	 * Removes a life based on character
-	 * 
-	 * @param c Which Character Type to remove;
-	 */
-	public void removeLife(Character c) {
-		if (c1.getType().equals(c2.getType()) && c1.getType().equals(c.getType())) {
-			c1.setDead(true);
-		} else if (c1.getType().equals(c.getType())) {
-			c1.removeAllowedMoves(possiblerules);
-			c1.setDead(true);
-		} else {
-			c2.removeAllowedMoves(possiblerules);
-			c2.setDead(true);
-		}
-	}
-
-	/**
 	 * Removes a life based on index
 	 * 
-	 * @precondition i == 1 or i == 2;
+	 * @precondition i == 1 or i == 2 and the ith character is alive
 	 * @param i
 	 *            the character/life to die
 	 * @throws IndexOutOfBoundsException if precondition not met
 	 */
 	public void removeLife(int i) {
-		if (i == 1) {
+		if (i == 1 && !c1.isDead()) {
 			c1.setDead(true);
-			if (!c1.getType().equals(c2.getType()))
+			if (!c1.getType().equals(c2.getType()) || c2.isDead())
 				c1.removeAllowedMoves(possiblerules);
-		} else if (i == 2) {
+		} else if (i == 2 && !c2.isDead()) {
 			c2.setDead(true);
-			if (!c1.getType().equals(c2.getType()))
+			if (!c1.getType().equals(c2.getType()) || c1.isDead())
 				c2.removeAllowedMoves(possiblerules);
 		} else {
 			throw new IndexOutOfBoundsException();
