@@ -1,7 +1,9 @@
+//Need to fix this!
 package model;
 
 import java.util.HashMap;
 import effects.CallableAction;
+import roles.*;
 import roles.Character;
 
 public class Player {
@@ -13,8 +15,8 @@ public class Player {
 	 * Initializes a character with the characters
 	 * 
 	 * @precondition card1 and card2 {@code isDead()} == false;
-	 * @param card1 
-	 * @param card2
+	 * @param card1 First role
+	 * @param card2 Second role
 	 */
 	public Player(Character card1, Character card2) {
 		card1.setDead(false);
@@ -34,7 +36,7 @@ public class Player {
 	/**
 	 * Removes a life based on character
 	 * 
-	 * @param c
+	 * @param c Which Character Type to remove;
 	 */
 	public void removeLife(Character c) {
 		if (c1.getType().equals(c2.getType()) && c1.getType().equals(c.getType())) {
@@ -54,6 +56,7 @@ public class Player {
 	 * @precondition i == 1 or i == 2;
 	 * @param i
 	 *            the character/life to die
+	 * @throws IndexOutOfBoundsException if precondition not met
 	 */
 	public void removeLife(int i) {
 		if (i == 1) {
@@ -65,7 +68,7 @@ public class Player {
 			if (!c1.getType().equals(c2.getType()))
 				c2.removeAllowedMoves(possiblerules);
 		} else {
-			throw new IllegalArgumentException();
+			throw new IndexOutOfBoundsException();
 		}
 	}
 
@@ -80,5 +83,39 @@ public class Player {
 
 	public Character getSecondCharacter() {
 		return c2;
+	}
+	
+	/**
+	 * Return a representation of the characters
+	 * 
+	 * @return an int[] of size 5. See {@code GameModel} invariant
+	 */
+	public int[] getRepresentation() {
+		int[] rep = new int[5];
+		if(c1 instanceof Ambassador) {
+			rep[0] ++;
+		} else if (c1 instanceof Assassin) {
+			rep[1] ++;
+		} else if (c1 instanceof Contessa) {
+			rep[2] ++;
+		} else if (c1 instanceof Captain) {
+			rep[3] ++;
+		} else if (c1 instanceof Duke) {
+			rep[4] ++;
+		}
+		
+		if(c2 instanceof Ambassador) {
+			rep[0] ++;
+		} else if (c2 instanceof Assassin) {
+			rep[1] ++;
+		} else if (c2 instanceof Contessa) {
+			rep[2] ++;
+		} else if (c2 instanceof Captain) {
+			rep[3] ++;
+		} else if (c2 instanceof Duke) {
+			rep[4] ++;
+		}
+		
+		return rep;
 	}
 }
