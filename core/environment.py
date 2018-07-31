@@ -7,7 +7,7 @@ class CoupEnvironment(object):
     """
     def __init__(self, numplayers=5):
         if numplayers < 3 or numplayers > 6:
-            raise ValueError("numplayers must be between 3 and 5")
+            raise ValueError("numplayers must be between 3 and 6")
 
         self.cards = np.zeros((numplayers, 2))
         self.deck = np.zeros((15 - numplayers * 2))
@@ -16,8 +16,18 @@ class CoupEnvironment(object):
         shuffleddeck = np.array([1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5])
         shuffleddeck = np.random.shuffle(shuffleddeck)
 
+        j = 0
+
+        for i in range(len(self.cards)):
+            self.cards[i][0] = shuffleddeck[j]
+            j+=1
+            self.cards[i][1] = shuffleddeck[j]
+            j+=1
+        
+        self.deck = shuffleddeck[j:]
+
     def step(self, action):
-        pass
+        raise NotImplementedError
 
     def close(self):
         pass
